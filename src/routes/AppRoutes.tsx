@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "../pages/home/Home";
+import Index from "../pages/index/Index";
 import SingIn from "../pages/auth/signIn/SingIn";
 import SingUp from "../pages/auth/signUp/SingUp";
 import Dashboard from "../pages/dashboard/Dashboard";
@@ -13,11 +13,11 @@ import { RootState } from "../redux/store";
 
 const AppRoutes = () => {
 
-    const {isAuthenticated} = useAppSelector((state:RootState)=>state.user)
+  const {isAuthenticated} = useAppSelector((state:RootState)=>state.user)
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Index />} />
         <Route path="/sign-in" element={<SingIn />} />
         <Route path="/sign-up" element={<SingUp />} />
         <Route path="/dashboard" element={<Protected isAuthenticated={isAuthenticated} redirectTo="/sign-in" > <Dashboard /> </Protected>} /> 
