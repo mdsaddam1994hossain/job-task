@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { RootState } from "../../../redux/store";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, Spin } from "antd";
 import SocialLoginCommon from "../../../components/SocialLoginCommon";
 import emlIcon from "../../../assets/eml-icon.png";
 import userIcon from "../../../assets/usr-icon.png";
@@ -10,21 +10,38 @@ import passIcon from "../../../assets/pas-icon.png";
 import DotedDesign from "../../../components/DotedDesign";
 import { useRegisterMutation } from "../../../redux/reducer/apiSlice";
 import { TRegisterUer, UserData } from "../../../types/Users";
+import { setLogin } from "../../../redux/reducer/userSlice";
+import useNotification from "../../../hooks/useNotification";
 
 const SingUp = () => {
   const { isAuthenticated } = useAppSelector((state: RootState) => state.user);
-  const [register, { data: registerData }] = useRegisterMutation();
+  const [register, { data: registerData,isLoading }] = useRegisterMutation();
+  const { setMyNotification } = useNotification();
   const dispatch = useAppDispatch()
   const location = useLocation();
   const navigate = useNavigate();
 
+  console.log(registerData,"------..")
+
   const onFinish = async(values: TRegisterUer) => {
     console.log(values,"values..")
-    const {email,password} = values;
-    const registerResult = await register({"email": email,
-    "password": password});
-    console.log("Success:","after success",registerResult);
-    
+    const {email,password,first_name} = values;
+    const regData:any = await register({"email": email,"first_name":first_name,"password": password});
+    console.log(regData)
+  
+
+    if(regData?.data?.token){
+      dispatch(setLogin())
+      navigate("/dashboard")
+      localStorage.setItem("token",regData?.data?.token)
+    }else{
+      setMyNotification({
+        status: 'error',
+        message: regData?.error?.data?.error,
+        duration: 2
+      });
+    }
+   
   };
 
 
@@ -107,7 +124,7 @@ const SingUp = () => {
               </Checkbox>
               
             </Form.Item>
-
+           
             <Form.Item>
               <Button
                 type="primary"
@@ -119,7 +136,7 @@ const SingUp = () => {
                   fontWeight: 500,
                 }}
               >
-                Sign Up
+                { isLoading ? <Spin /> :"Sign Up"}
               </Button>
             </Form.Item>
           </Form>

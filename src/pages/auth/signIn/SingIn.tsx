@@ -5,30 +5,44 @@ import { useLocation, useNavigate } from "react-router-dom";
 import emlIcon from "../../../assets/eml-icon.png";
 import passIcon from "../../../assets/pas-icon.png";
 
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, Spin } from "antd";
 import SocialLoginCommon from "../../../components/SocialLoginCommon";
 import { useLoginMutation } from "../../../redux/reducer/apiSlice";
 import { LoginUser, UserData } from "../../../types/Users";
 import { setLogin } from "../../../redux/reducer/userSlice";
+import useNotification from "../../../hooks/useNotification";
 
 const SingIn = () => {
   const { isAuthenticated } = useAppSelector((state: RootState) => state.user);
-  const [login, { data: loginData }] = useLoginMutation();
-  const dispatch =useAppDispatch()
+  const [login, { data: loginData,isLoading }] = useLoginMutation();
+  const { setMyNotification } = useNotification();
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
 
-  const onLogin = async(values: LoginUser) => {
-     await login({ email: values.email, password: values.password })
-     console.log(loginData)
-    dispatch(setLogin())
-    navigate("/dashboard")
+  const onLogin = async (values: LoginUser) => {
+    const loginResult: any = await login({
+      email: values.email,
+      password: values.password,
+    });
+    console.log(loginResult)
+
+    if(loginResult?.data?.token){
+      dispatch(setLogin());
+      navigate("/dashboard");
+      localStorage.setItem("token", loginResult?.data?.token);
+    }else{
+      setMyNotification({
+        status: 'error',
+        message: loginResult?.error?.data?.error,
+        duration: 2
+      });
+    }
+
     
   };
 
-  const handleLogin = async () => {
-  
-  };
+  const handleLogin = async () => {};
 
   const gotoSignUpPage = () => {
     navigate("/sign-up");
@@ -90,7 +104,6 @@ const SingIn = () => {
             >
               Remember Me
             </Checkbox>
-            {/* /<input type="checkbox" className="check-box"  /> */}
           </Form.Item>
 
           <Form.Item>
@@ -100,7 +113,8 @@ const SingIn = () => {
               className="form-input"
               style={{ fontFamily: "Inter", fontSize: "16px", fontWeight: 500 }}
             >
-              Sign In
+             
+              { isLoading ? <Spin /> :"Sign In"}
             </Button>
           </Form.Item>
         </Form>

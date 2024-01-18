@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AppRoutes from "../../routes/AppRoutes";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { RootState } from "../../redux/store";
 import Header from "../../components/Header";
 import MenueItems from "../../components/MenueItems";
+import { setLogin } from "../../redux/reducer/userSlice";
 
 const Layout = () => {
   const { isAuthenticated } = useAppSelector((state: RootState) => state.user);
+  const dispatch = useAppDispatch()
+  const token =localStorage.getItem("token")
+  
+  console.log(isAuthenticated,"login..")
+
+  //  useEffect(()=>{
+  //    if(token){
+  //      dispatch(setLogin())
+  //    }
+  //  },[token])
   return (
     <div>
       <Header />

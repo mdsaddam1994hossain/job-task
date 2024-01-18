@@ -89,6 +89,11 @@ line-height: normal;
   font-size: 12px;
   color: #B0B7C3;
 }
+.text-style-14{
+  font-family: Inter;
+  font-size: 14px;
+  color: #4E5D78;
+}
 .text-style-18{
   font-size: 18px;
   color: #8A94A6;
@@ -104,6 +109,20 @@ line-height: normal;
 .medium{
   font-weight: 500;
 }
+.semi-bold{
+  font-weight: 600;
+}
+.bold{
+  font-weight: 700;
+}
+
+.option-icon{
+  height: 24px;
+  width: 24px;
+  margin-left: 30px;
+}
+
+
 
 .m-0{
   margin:0px
@@ -225,6 +244,12 @@ line-height: normal;
   background-color: #F3F3F3;
   width: 68px;
 }
+
+.table-img{
+  width: 60px;
+  height: 60px;
+  border-radius: 15px;
+}
 .ant-form-item .ant-form-item-explain-error{
   color: #FF5630
 }
@@ -232,6 +257,11 @@ line-height: normal;
 :where(.css-dev-only-do-not-override-zl9ks2).ant-input-outlined.ant-input-status-error:not(.ant-input-disabled):focus, :where(.css-dev-only-do-not-override-zl9ks2).ant-input-outlined.ant-input-status-error:not(.ant-input-disabled):focus-within {
     border-color: #FF5630;
    
+}
+
+
+:where(.css-dev-only-do-not-override-zl9ks2).ant-spin .ant-spin-dot-item{
+  background-color: #FF5630;
 }
 
 

@@ -14,21 +14,14 @@ export const apiSlice = createApi({
         body: { email, password },
       }),
     }),
-    register: builder.mutation<UserData, { email: string;password: string }>({
-     
-      query: ({ email, password }) => 
-      
-        {
-          console.log(email,password,"api")
-          return {
-              url: `register`,
-              method: 'POST',
-              body: { email, password },
-            }
-          
-        }
+    register: builder.mutation<UserData, { email: string;first_name:string; password: string }>({
+      query: ({ email, password,first_name }) => ({
+        url: 'register',
+        method: 'POST',
+        body: { email, first_name, password },
+      }),
     }),
-    getUsers: builder.query<UserData[], void>({
+    getUsers: builder.query<any, void>({
       query: () => 'users',
     }),
     deleteUser: builder.mutation<void, number>({
