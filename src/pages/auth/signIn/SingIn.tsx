@@ -1,20 +1,33 @@
 import React, { useEffect } from "react";
 import { RootState } from "../../../redux/store";
-import { useAppSelector } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { useLocation, useNavigate } from "react-router-dom";
 import emlIcon from "../../../assets/eml-icon.png";
 import passIcon from "../../../assets/pas-icon.png";
 
 import { Button, Checkbox, Form, Input } from "antd";
 import SocialLoginCommon from "../../../components/SocialLoginCommon";
+import { useLoginMutation } from "../../../redux/reducer/apiSlice";
+import { LoginUser, UserData } from "../../../types/Users";
+import { setLogin } from "../../../redux/reducer/userSlice";
 
 const SingIn = () => {
   const { isAuthenticated } = useAppSelector((state: RootState) => state.user);
+  const [login, { data: loginData }] = useLoginMutation();
+  const dispatch =useAppDispatch()
   const location = useLocation();
   const navigate = useNavigate();
 
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
+  const onLogin = async(values: LoginUser) => {
+     await login({ email: values.email, password: values.password })
+     console.log(loginData)
+    dispatch(setLogin())
+    navigate("/dashboard")
+    
+  };
+
+  const handleLogin = async () => {
+  
   };
 
   const gotoSignUpPage = () => {
@@ -38,7 +51,7 @@ const SingIn = () => {
         <Form
           name="basic"
           initialValues={{ remember: true }}
-          onFinish={onFinish}
+          onFinish={onLogin}
           autoComplete="off"
         >
           <Form.Item

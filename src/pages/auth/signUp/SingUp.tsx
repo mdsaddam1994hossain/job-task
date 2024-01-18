@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useAppSelector } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { RootState } from "../../../redux/store";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form, Input } from "antd";
@@ -8,15 +8,26 @@ import emlIcon from "../../../assets/eml-icon.png";
 import userIcon from "../../../assets/usr-icon.png";
 import passIcon from "../../../assets/pas-icon.png";
 import DotedDesign from "../../../components/DotedDesign";
+import { useRegisterMutation } from "../../../redux/reducer/apiSlice";
+import { TRegisterUer, UserData } from "../../../types/Users";
 
 const SingUp = () => {
   const { isAuthenticated } = useAppSelector((state: RootState) => state.user);
+  const [register, { data: registerData }] = useRegisterMutation();
+  const dispatch = useAppDispatch()
   const location = useLocation();
   const navigate = useNavigate();
 
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
+  const onFinish = async(values: TRegisterUer) => {
+    console.log(values,"values..")
+    const {email,password} = values;
+    const registerResult = await register({"email": email,
+    "password": password});
+    console.log("Success:","after success",registerResult);
+    
   };
+
+
 
   const gotoSignInPage = () => {
     navigate("/sign-in");
@@ -59,7 +70,7 @@ const SingUp = () => {
               />
             </Form.Item>
             <Form.Item
-              name="yourname"
+              name="first_name"
               rules={[{ required: true, message: "Please enter your name" }]}
               className="font-inter medium font-14"
             >
