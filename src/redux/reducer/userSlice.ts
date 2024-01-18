@@ -6,7 +6,7 @@ export interface UserState {
 }
 
 const initialState: UserState = {
-  isAuthenticated: true,
+  isAuthenticated: false,
 };
 
 const userSlice = createSlice({

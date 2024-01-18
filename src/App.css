@@ -15,26 +15,224 @@
 }
 
 .dropDownButton{
-  width: 146px;
+width: 146px;
 height: 43px;
 border-radius: 16px;
 background: #F0F5FA;
 border:none;
 color: #B0B7C3;
-font-family: Inter;
 font-size: 12px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
 }
 
-.selectOption{
-color: #B0B7C3;
-font-family: Inter;
-font-size: 12px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
+
+
+.muneStyle{
+ 
+ padding-left: 20px;
+ background-color: white;
+ 
 }
+
+.menuItem{
+  display: block;
+  margin: 10px 0;
+  height: 50px; 
+  width: 216px;
+  font-family: Inter;
+  border-radius: 14px;
+  display: flex;
+  padding-left: 30px;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  gap: 17px;
+}
+
+.select-menuItem{
+  display: block;
+  margin: 10px 0;
+  height: 50px;
+  background-color: #F0F5FA;
+  width: 216px;
+  font-family: Inter;
+  border-radius: 14px;
+  display: flex;
+  padding-left: 30px;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  gap: 17px;
+
+}
+
+.menue-item{
+  text-decoration: none;
+}
+
+.menue-logo{
+  height: 16px;
+  width: 16px;
+}
+
+.title{
+  font-family: Inter;
+  font-size: 26px;
+  font-weight: bold;
+  color: #323B4B;
+}
+
+.text-style-12{
+  font-family: Inter;
+  font-size: 12px;
+  color: #B0B7C3;
+}
+.text-style-18{
+  font-size: 18px;
+  color: #8A94A6;
+}
+.text-style-20{
+  font-size: 20px;
+  color: #B0B7C3;
+}
+.text-style-16{
+  font-size: 16px;
+  color: #8A94A6;
+}
+.medium{
+  font-weight: 500;
+}
+
+.m-0{
+  margin:0px
+}
+.m-2{
+  margin:8px
+}
+.m-4{
+  margin:16px
+}
+
+.font-inter{
+  font-family: Inter;
+}
+
+.ml-12{
+  margin-left: 32px;
+}
+
+.flex{
+  display: flex;
+} 
+.justify-center{
+  justify-content: center;
+}
+
+.items-center{
+  align-items: center;
+}
+.mt-24{
+  margin-top: 94px;
+}
+.mt-4{
+  margin-top: 16px;
+}
+.mt-6{
+  margin-top: 24px;
+}
+.mr-3{
+  margin-right: 12px;
+}
+
+.my-6{
+  margin: 24px 0;
+}
+
+.mb-4{
+  margin-bottom: 16px;
+}
+.pb-8{
+  padding-bottom: 32px;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.social-button{
+  height: 58px;
+  width: 256px;
+  background: #F0F5FA;
+  border-radius: 16px;
+  border: none;
+  
+}
+
+.gap-4{
+  gap: 16px;
+}
+
+.block{
+  display: block;
+}
+
+.divider{
+  width: 230px;
+  height: 2px;
+  background-color: #F0F5FA;
+}
+
+.form-input{
+  width: 540px;
+  height: 58px;
+  border-radius: 16px;
+
+}
+
+.font-14{
+  font-size: 14px;
+  font-family: Inter;
+}
+
+.check-box{
+  height: 28px;
+  width: 28px;
+  background-color: #EDEFF1;
+  border: none;
+  
+}
+
+.relative{
+  position: relative;
+}
+.icon-style{
+  width: 20px;
+  width: 20px;
+  margin-right: 8px;
+}
+
+.active-dot{
+  height: 4px;
+  border-radius: 2px;
+  background-color: #38CB89;
+  width: 68px;
+}
+.inactive-dot{
+  height: 4px;
+  border-radius: 2px;
+  background-color: #F3F3F3;
+  width: 68px;
+}
+.ant-form-item .ant-form-item-explain-error{
+  color: #FF5630
+}
+
+:where(.css-dev-only-do-not-override-zl9ks2).ant-input-outlined.ant-input-status-error:not(.ant-input-disabled):focus, :where(.css-dev-only-do-not-override-zl9ks2).ant-input-outlined.ant-input-status-error:not(.ant-input-disabled):focus-within {
+    border-color: #FF5630;
+   
+}
+
 
 

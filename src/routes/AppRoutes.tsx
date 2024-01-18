@@ -15,7 +15,7 @@ const AppRoutes = () => {
 
   const {isAuthenticated} = useAppSelector((state:RootState)=>state.user)
   return (
-    <BrowserRouter>
+   
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/sign-in" element={<SingIn />} />
@@ -24,7 +24,7 @@ const AppRoutes = () => {
         <Route path="/users" element={<Protected isAuthenticated={isAuthenticated} redirectTo="/sign-in" > <Users /> </Protected>} />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
-    </BrowserRouter>
+    
   );
 };
 
