@@ -18,16 +18,16 @@ const SingUp = () => {
   const [register, { data: registerData,isLoading }] = useRegisterMutation();
   const { setMyNotification } = useNotification();
   const dispatch = useAppDispatch()
-  const location = useLocation();
+  const token =localStorage.getItem("token")
   const navigate = useNavigate();
 
-  console.log(registerData,"------..")
+
 
   const onFinish = async(values: TRegisterUer) => {
-    console.log(values,"values..")
+  
     const {email,password,first_name} = values;
     const regData:any = await register({"email": email,"first_name":first_name,"password": password});
-    console.log(regData)
+    
   
 
     if(regData?.data?.token){
@@ -50,11 +50,11 @@ const SingUp = () => {
     navigate("/sign-in");
   };
 
-  // useEffect(() => {
-  //     if (location.pathname === '/sign-up') {
-  //       return isAuthenticated ? navigate('/dashboard') : navigate('/sign-in');
-  //     }
-  //   }, [navigate, location,isAuthenticated]);
+  useEffect(() => {
+    if (token) {
+      navigate("/dashboard")
+    }
+  });
   return (
     <div className="mt-24">
       <SocialLoginCommon

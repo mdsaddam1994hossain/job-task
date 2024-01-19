@@ -16,6 +16,7 @@ const SingIn = () => {
   const { isAuthenticated } = useAppSelector((state: RootState) => state.user);
   const [login, { data: loginData,isLoading }] = useLoginMutation();
   const { setMyNotification } = useNotification();
+   const token =localStorage.getItem("token")
   const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
@@ -25,7 +26,6 @@ const SingIn = () => {
       email: values.email,
       password: values.password,
     });
-    console.log(loginResult)
 
     if(loginResult?.data?.token){
       dispatch(setLogin());
@@ -42,17 +42,15 @@ const SingIn = () => {
     
   };
 
-  const handleLogin = async () => {};
-
   const gotoSignUpPage = () => {
     navigate("/sign-up");
   };
 
-  // useEffect(() => {
-  //   if (location.pathname === "/sign-in") {
-  //     return isAuthenticated ? navigate("/dashboard") : navigate("/sign-in");
-  //   }
-  // }, [navigate, location, isAuthenticated]);
+  useEffect(() => {
+    if (token) {
+      navigate("/dashboard")
+    }
+  });
 
   return (
     <div className="mt-24">

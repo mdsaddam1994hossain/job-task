@@ -10,14 +10,12 @@ const Layout = () => {
   const { isAuthenticated } = useAppSelector((state: RootState) => state.user);
   const dispatch = useAppDispatch()
   const token =localStorage.getItem("token")
-  
-  console.log(isAuthenticated,"login..")
 
-  //  useEffect(()=>{
-  //    if(token){
-  //      dispatch(setLogin())
-  //    }
-  //  },[token])
+   useEffect(()=>{
+     if(token){
+       dispatch(setLogin())
+     }
+   },[token])
   return (
     <div>
       <Header />

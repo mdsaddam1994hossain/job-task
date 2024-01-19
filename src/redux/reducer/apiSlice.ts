@@ -1,10 +1,17 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { UserData } from '../../types/Users';
+import { CreateUser, CreateUserResponse, UserData } from '../../types/Users';
 
-
-
+const token =localStorage.getItem("token")
+console.log(token,"token....")
 export const apiSlice = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://reqres.in/api/' }),
+  baseQuery: fetchBaseQuery({
+     baseUrl: 'https://reqres.in/api/',
+    //  headers: {
+    //   Authorization: `Bearer ${localStorage.getItem("token")}`,
+    //   'Content-Type': 'application/json',
+    // },
+ }),
+  
   reducerPath:"apiSlice.reducer",
   endpoints: (builder) => ({
     login: builder.mutation<UserData, { email: string; password: string }>({
@@ -21,16 +28,27 @@ export const apiSlice = createApi({
         body: { email, first_name, password },
       }),
     }),
+    createUser: builder.mutation<CreateUser, {name:string,job:string}>({
+      query: ({name,job}) => ({
+        url: 'users',
+        method: 'POST',
+        body: {name,job},
+      }),
+    }),
     getUsers: builder.query<any, void>({
-      query: () => 'users',
+      query: () => ({
+        url: 'users',
+        method: 'GET',    
+      }),
     }),
     deleteUser: builder.mutation<void, number>({
       query: (userId) => ({
         url: `users/${userId}`,
         method: 'DELETE',
+       
       }),
     }),
-    updateUser: builder.mutation<UserData, { id: number; data: UserData }>({
+    updateUser: builder.mutation<UserData, { id: number; data: CreateUser }>({
       query: ({ id, data }) => ({
         url: `users/${id}`,
         method: 'PUT',
@@ -40,4 +58,4 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useGetUsersQuery, useDeleteUserMutation, useUpdateUserMutation } = apiSlice;
+export const { useLoginMutation, useCreateUserMutation, useRegisterMutation, useGetUsersQuery, useDeleteUserMutation, useUpdateUserMutation } = apiSlice;

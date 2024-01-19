@@ -4,8 +4,7 @@ import { UserState } from '../../types/Users';
 
 
 const initialState: UserState = {
-  isAuthenticated: false,
-  token:"",
+  isAuthenticated: true,
   user: null
 };
 

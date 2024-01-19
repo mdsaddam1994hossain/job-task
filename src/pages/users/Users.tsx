@@ -1,52 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useGetUsersQuery } from '../../redux/reducer/apiSlice';
-import { Table } from 'antd';
-import { UserData } from '../../types/Users';
-import optionIcon from "../../assets/optionIcon.png"
+import { Button, Popover, Table } from 'antd';
+import { TUser, UserData } from '../../types/Users';
 
-const columns = [
-    {
-        title: '#ID',
-        dataIndex: "id",
-        key: 'id',
+import PopupButton from '../../components/PopupButton';
 
-    },
-    {
-      title: 'USERS',
-      render: (item:any)=>{
-        console.log(item)
-        return (
-            <div className='flex gap-4 items-center'>
-                <img src={item.avatar} className='table-img' />
-                <p className='text-style-14 semi-bold'>{item.first_name}</p>
-            </div>
-        )
-      },
-      
-      key: 'avatar',
-    },
-    {
-      title: 'EMAIL',
-      key: 'email',
-      render:(item:any)=>{
-        return(
-           <p className='text-style-14 semi-bold'>{item.email}</p>
-        )
-      }
-    },
-    
-    {
-      title: 'OPTIONS',
-      key: 'option',
-      render:(item:any)=>{
-        return(
-           <div className='f-r'>
-             <img src={optionIcon}  className='option-icon' />
-           </div>
-        )
-      }
-    },
-  ];
+
 
 
 
@@ -54,7 +13,51 @@ const Users = () => {
    // const {data} = useGetUsersQuery()
 
     const { data: users, isLoading: isUsersLoading } = useGetUsersQuery();
+   
     const userData :UserData[] = users?.data ;
+
+    const columns = [
+      {
+          title: '#ID',
+          dataIndex: "id",
+          key: 'id',
+  
+      },
+      {
+        title: 'USERS',
+        render: (item:any)=>{
+          return (
+              <div className='flex gap-4 items-center'>
+                  <img src={item.avatar} className='table-img' />
+                  <p className='text-style-14 semi-bold'>{item.first_name}</p>
+              </div>
+          )
+        },
+        
+        key: 'avatar',
+      },
+      {
+        title: 'EMAIL',
+        key: 'email',
+        render:(item:TUser)=>{
+          return(
+             <p className='text-style-14 semi-bold'>{item.email}</p>
+          )
+        }
+      },
+      
+      {
+        title: 'OPTIONS',
+        key: 'option',
+        render:(item:TUser)=>{
+          return(
+             <div className='f-r' key={item.id}>
+               <PopupButton user={item}/>
+             </div>
+          )
+        }
+      },
+    ];
     return (
         <div>
             <Table 

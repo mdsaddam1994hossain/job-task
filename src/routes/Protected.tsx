@@ -8,8 +8,8 @@ type Props ={
 }
 
 const Protected :FC<Props> = ({isAuthenticated,children,redirectTo}) => {
-    
-    if(!isAuthenticated){
+    const token =localStorage.getItem("token")
+    if(!token){
         return <Navigate to={redirectTo} replace />
     }
 

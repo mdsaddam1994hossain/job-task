@@ -1,8 +1,6 @@
 export interface UserData {
-    id: number;
     email: string;
-    first_name?:string;
-   
+    first_name?:string;   
   }
 
   export interface LoginUser {   
@@ -16,16 +14,28 @@ export interface UserData {
     password:string
   }
 
-  export interface TUsers{
+  export interface TUser{
     id:number;
-    img:string;
+    avater:string;
     first_name:string;
     last_name:string;
     email:string
   }
 
+  export interface CreateUser{
+    name?:string;
+    job:string
+  }
+
+  export interface CreateUserResponse {
+    id: number;
+    name?: string;
+    job: string;
+    createdAt: string;
+  }
+
   export interface UserState {
     isAuthenticated: boolean;
-    user: TUsers | null
-    token:string;
+    user: TUser | null
+   
   }
