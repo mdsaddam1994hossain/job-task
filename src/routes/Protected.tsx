@@ -1,19 +1,19 @@
-import React, { FC,ReactNode } from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { FC, ReactNode, useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
-type Props ={
-    isAuthenticated:boolean;
-    children :ReactNode;
-    redirectTo: string;
+type Props = {
+  isAuthenticated: boolean;
+  children: ReactNode;
+  redirectTo: string;
+};
+
+const Protected: FC<Props> = ({ isAuthenticated, children, redirectTo }) => {
+  const token = localStorage.getItem("token");
+  if(!token){
+    return <Navigate to={redirectTo} replace />
 }
-
-const Protected :FC<Props> = ({isAuthenticated,children,redirectTo}) => {
-    const token =localStorage.getItem("token")
-    if(!token){
-        return <Navigate to={redirectTo} replace />
-    }
-
-    return(
+  
+  return(
         <>
          {children}
         </>

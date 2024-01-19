@@ -18,14 +18,18 @@ const Layout = () => {
    },[token])
   return (
     <div>
-      <Header />
+      {!token && <Header /> } 
       {isAuthenticated ? (
         <div style={{ display: "flex" }}>
-          <div style={{ width: "20%" }}>
+          <div style={{ width: "20%" }}  >
             <MenueItems />
           </div>
           <div style={{ width: "80%" }}>
-            <AppRoutes />
+             <Header />
+             <div className="mt-6">
+             <AppRoutes />
+             </div>
+             
           </div>
         </div>
       ) : (

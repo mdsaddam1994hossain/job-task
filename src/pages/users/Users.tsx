@@ -60,6 +60,8 @@ const Users = () => {
     ];
     return (
         <div>
+
+          <p className='font-inter semi-bold text-xl'>Users List</p>
             <Table 
                dataSource={userData}
                columns={columns}

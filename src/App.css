@@ -1,3 +1,4 @@
+/* header css */
 .app-logo {
   width: 170px;
   height: 45px;
@@ -11,6 +12,26 @@
   justify-content: space-between;
 }
 
+.side-bar{
+  min-height: 100px;
+  padding-left: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.text-xl{
+  font-size: 23px;
+  color: #323B4B;
+}
+
+
+.muneStyle {
+  padding-left: 20px;
+  background-color: white;
+}
+
+/* package style */
+
 .dropDownButton {
   width: 146px;
   height: 43px;
@@ -22,11 +43,6 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-}
-
-.muneStyle {
-  padding-left: 20px;
-  background-color: white;
 }
 
 .menuItem {
@@ -68,6 +84,8 @@
   height: 16px;
   width: 16px;
 }
+
+/* reuseable css */
 
 .title {
   font-family: Inter;
@@ -157,6 +175,7 @@
 .mt-6 {
   margin-top: 24px;
 }
+
 .mr-3 {
   margin-right: 12px;
 }
@@ -254,6 +273,23 @@
 .ant-form-item .ant-form-item-explain-error {
   color: #ff5630;
 }
+
+.profile-img{
+  height: 47px;
+  width: 47px;
+  border-radius: 30px;
+}
+
+.search-input{
+  width: 540px;
+  height: 58px;
+  background-color: #F0F5FA;
+  border: none;
+  border-radius: 14px;
+}
+
+
+/* library css global */
 
 :where(
     .css-dev-only-do-not-override-zl9ks2

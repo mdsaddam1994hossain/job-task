@@ -13,12 +13,10 @@ import { setLogin } from "../../../redux/reducer/userSlice";
 import useNotification from "../../../hooks/useNotification";
 
 const SingIn = () => {
-  const { isAuthenticated } = useAppSelector((state: RootState) => state.user);
   const [login, { data: loginData,isLoading }] = useLoginMutation();
   const { setMyNotification } = useNotification();
    const token =localStorage.getItem("token")
   const dispatch = useAppDispatch();
-  const location = useLocation();
   const navigate = useNavigate();
 
   const onLogin = async (values: LoginUser) => {
